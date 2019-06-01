@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css"/>
+    <style>
+      html {
+        height:100%;
+      }
+      body {
+        height: 100%;
+        margin: 0px;
+        text-align: center;
+      }
+      .heading2 {
+        margin-top: 30%;
+      }
+      h3 {
+        margin-top: 3%;
+      }
+      .select1 {
+        margin-top: 30%;
+      }
+      .select2 {
+        margin-top: 35%;
+      }
+      .tabs {
+        margin: 3%;
+      }
+      .wordcloud {
+        margin: 2%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='vue-app' v-bind:style="mainDiv">
+      <div v-bind:style="sidebar">
+        <div v-bind:style='heading2' class='heading2'>
+          <h4>Topic : Crime</h4>
+        </div>
+        <div vbind:style="select1" class='select1'>
+          <b-form-select v-model="selected1" :options="options1"></b-form-select>
+        </div>
+        <div vbind:style="select2" class='select2'>
+          <b-form-select v-model="selected2" :options="options2"></b-form-select>
+        </div>
+      </div>
+      <div v-bind:style="graph">
+        <h3>DATA AGGREGATION, BIG DATA ANALYSIS AND VISUALIZATION</h3>
+        <div class='tabs'>
+          <b-tabs content-class="mt-3">
+            <b-container fluid>
+              <b-row class="my-1">
+                <b-col sm="3">
+                  <label>Enter Number of Top Words</label>
+                </b-col>
+                <b-col sm="9">
+                  <b-form-input v-model="top"></b-form-input>
+                </b-col>
+              </b-row>
+            </b-container>
+            <b-tab title="Word Cloud" active>{{ drawGraph('wc', 'wordcloud1') }}
+              <div id='wordcloud1'></div>
+            </b-tab>
+            <b-tab title="Word Co-Occurence">{{ drawGraph('wcc', 'wordcloud2') }}<div id='wordcloud2'></div></b-tab>
+          </b-tabs>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="//unpkg.com/@babel/polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="//unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+    <script src="lib/d3/d3.js"></script>
+    <script src="lib/d3/d3.layout.cloud.js"></script>
+    <script src="d3.wordcloud.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
